@@ -1,13 +1,17 @@
-// import type { Metadata } from 'next';
-// import { Inter } from 'next/font/google';
-// import './globals.css';
-// const inter = Inter({ subsets: ['latin'] });
+import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
+import { PropsWithChildren } from "react";
 
-// export const metadata: Metadata = {
-//   title: 'Jobify Dev',
-//   description: 'Job application tracking system for job hunters',
-// };
-
-export default function layout({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+export default function layout({ children }: PropsWithChildren) {
+  return (
+    <main className="grid lg:grid-cols-5">
+      <div className="hidden lg:block lg:col-span-1 lg:min-h-screen">
+        <Sidebar />
+      </div>
+      <div className="lg:col-span-4">
+        <Navbar />
+        <div className="py-16 px-4 sm:px-8 lg:px-16">{children}</div>
+      </div>
+    </main>
+  );
 }
