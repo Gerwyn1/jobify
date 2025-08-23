@@ -77,7 +77,7 @@ export async function getAllJobsAction({
         ],
       };
     }
-    if (jobStatus && jobStatus !== 'all') {
+    if (jobStatus && jobStatus !== "all") {
       whereClause = {
         ...whereClause,
         status: jobStatus,
@@ -87,7 +87,7 @@ export async function getAllJobsAction({
     const jobs: JobType[] = await prisma.job.findMany({
       where: whereClause,
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
     });
 
@@ -95,5 +95,22 @@ export async function getAllJobsAction({
   } catch (error) {
     console.error(error);
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
+  }
+}
+
+export async function deleteJobAction(id: string): Promise<JobType | null> {
+  const userId = authenticateAndRedirect();
+
+  try {
+    const job: JobType = await prisma.job.delete({
+      where: {
+        id,
+        clerkId: userId,
+      },
+    });
+    console.log(job)
+    return job;
+  } catch (error) {
+    return null;
   }
 }

@@ -47,9 +47,9 @@ function CreateJobForm() {
         return;
       }
       toast({ description: "job created" });
-      queryClient.invalidateQueries({ queryKey: "jobs" });
-      queryClient.invalidateQueries({ queryKey: "stats" });
-      queryClient.invalidateQueries({ queryKey: "charts" });
+      queryClient.invalidateQueries({ queryKey: ["jobs"] });
+      queryClient.invalidateQueries({ queryKey: ["stats"] });
+      queryClient.invalidateQueries({ queryKey: ["charts"] });
       router.push("/jobs");
       // form.reset(); - does not reset select input
     },
