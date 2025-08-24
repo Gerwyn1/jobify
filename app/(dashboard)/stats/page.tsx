@@ -1,6 +1,4 @@
-function StatsPage() {
-  return (
-    <div>StatsPage</div>
-  )
+async function StatsPage() {
+  return <div>StatsPage</div>;
 }
-export default StatsPage
+export default StatsPage;
