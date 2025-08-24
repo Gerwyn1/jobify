@@ -60,6 +60,7 @@ export async function getAllJobsAction({
     let whereClause: Prisma.JobWhereInput = {
       clerkId: userId,
     };
+
     if (search) {
       whereClause = {
         ...whereClause,
@@ -67,11 +68,13 @@ export async function getAllJobsAction({
           {
             position: {
               contains: search,
+              mode: "insensitive",
             },
           },
           {
             company: {
               contains: search,
+              mode: "insensitive",
             },
           },
         ],
